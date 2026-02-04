@@ -28,8 +28,8 @@ Hi there! 👋 I'm **Prince Sah**, a passionate **B.Tech CSE student** from Nepa
 ---
 
 ## 📫 Contact
-- Email: [prince.sah@email.com](mailto:sahprince4554@email.com)  
-- Phone: [+977 9800000000](tel:+919234406164)  
+- Email: [sahprince4554@email.com](mailto:sahprince4554@email.com)  
+- Phone: [+91 9234406164](tel:+919234406164)  
 - GitHub: [https://github.com/prince-sah-codes](https://github.com/prince-sah-codes)
 
 ---
