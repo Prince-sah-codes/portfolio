@@ -1,0 +1,98 @@
+/* Basic styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background-color: #f0f4f8;
+  color: #333;
+  scroll-behavior: smooth;
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(135deg,#0077b6,#023e8a);
+  color: white;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+header p {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+/* Sections */
+section {
+  padding: 50px 20px;
+  max-width: 800px;
+  margin: auto;
+}
+
+section h2 {
+  color: #0077b6;
+  border-bottom: 2px solid #0077b6;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style-type: square;
+  padding-left: 20px;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #023e8a;
+  color: white;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {opacity:0; transform: translateY(20px);}
+  to {opacity:1; transform: translateY(0);}
+}
+
+.animate {
+  animation: fadeInUp 1s ease forwards;
+}
+
+.animate-delay {
+  animation: fadeInUp 1s ease 0.5s forwards;
+}
+
+.fade { animation: fadeInUp 0.8s ease forwards; opacity:0;}
+.fade-delay { animation: fadeInUp 0.8s ease 0.3s forwards; opacity:0;}
+.fade-delay2 { animation: fadeInUp 0.8s ease 0.5s forwards; opacity:0;}
+.fade-delay3 { animation: fadeInUp 0.8s ease 0.7s forwards; opacity:0;}
+.fade-delay4 { animation: fadeInUp 0.8s ease 0.9s forwards; opacity:0;}
+
+/* Links & hover effect */
+a {
+  color: #0077b6;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #023e8a;
+}
+
+/* Section hover cards for projects */
+section#projects ul li {
+  padding: 10px;
+  border-radius: 5px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+section#projects ul li:hover {
+  transform: translateY(-5px);
+  background-color: #caf0f8;
+}

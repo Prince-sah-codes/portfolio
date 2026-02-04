@@ -1,1 +1,3 @@
 # portfolio
+ just a beginner portfolio #slowly building
+something creative is coming.....
