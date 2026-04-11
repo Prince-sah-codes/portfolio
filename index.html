@@ -7,97 +7,621 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0f172a;
-  --accent:#38bdf8;
-  --accent-glow: rgba(56,189,248,0.4);
+  --bg:#0a0e27;
+  --accent:#00d9ff;
+  --accent-glow: rgba(0,217,255,0.4);
   --card-bg: rgba(255,255,255,0.05);
   --text:#f8fafc;
   --text-secondary:#94a3b8;
   --glass-border: rgba(255,255,255,0.1);
+  --purple: #d946ef;
+  --pink: #ec4899;
 }
 
-/* Reset */
-*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
-body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6;}
-a{text-decoration:none;color:var(--accent);transition:0.3s;}
-a:hover{color:#fff;}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-/* Background Orbs */
-.bg-orb{position:fixed;border-radius:50%;filter:blur(80px);z-index:-1;opacity:0.6;animation:float 12s infinite ease-in-out;}
-.orb-1{top:-10%;left:-10%;width:500px;height:500px;background:purple;animation-delay:0s;}
-.orb-2{bottom:-10%;right:-10%;width:400px;height:400px;background:var(--accent);animation-delay:6s;}
-@keyframes float{0%,100%{transform:translate(0,0);}50%{transform:translate(30px,50px);}}
+html, body {
+  width: 100%;
+  height: auto;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+a:hover {
+  color: #fff;
+}
+
+/* BACKGROUND ORBS */
+.bg-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 0;
+  opacity: 0.4;
+  mix-blend-mode: screen;
+}
+
+.orb-1 {
+  top: -10%;
+  left: -10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, var(--purple) 0%, transparent 70%);
+  animation: float 15s ease-in-out infinite;
+}
+
+.orb-2 {
+  bottom: -10%;
+  right: -10%;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+  animation: float 18s ease-in-out infinite 2s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(30px, 50px); }
+}
 
 /* NAVIGATION */
-nav{display:flex;justify-content:space-between;align-items:center;padding:20px 10%;background: rgba(15,23,42,0.8);backdrop-filter: blur(10px);position:fixed;width:100%;z-index:1000;border-bottom:1px solid var(--glass-border);}
-.logo{font-family:'Fira Code',monospace;font-size:1.5rem;font-weight:bold;color:var(--accent);text-shadow:0 0 10px var(--accent-glow);}
-.nav-links a{margin-left:30px;font-size:0.9rem;color:var(--text);}
-.nav-links a:hover{color:var(--accent);}
-
-/* HERO */
-.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 10%;position:relative;overflow:hidden;perspective:1000px;}
-.hero-content{transition:transform 0.1s ease; will-change:transform; display:flex;align-items:center;gap:40px;flex-wrap:wrap; justify-content:center;}
-
-/* Hero Photo */
-.hero-photo img {
-    width: 180px;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 4px solid var(--accent);
-    box-shadow: 0 0 20px var(--accent-glow);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-.hero-photo img:hover {
-    transform: scale(1.05) rotateY(5deg);
-    box-shadow: 0 0 40px var(--accent-glow);
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 5%;
+  background: rgba(10, 14, 39, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--glass-border);
+  z-index: 100;
 }
 
-.hero p{color:var(--accent);font-family:'Fira Code';margin-bottom:10px;}
-.hero h1{font-size:4rem;margin-bottom:20px;opacity:0;transform:translateY(20px);transition:1s;}
-.hero h2{color:var(--text-secondary);font-size:2.5rem;margin-bottom:10px;opacity:0;transform:translateY(20px);transition:1s;}
-.typewriter{font-family:'Fira Code',monospace;color:var(--text-secondary);font-size:1.2rem;overflow:hidden;border-right:2px solid var(--accent);white-space:nowrap;width:0;animation:typing 3.5s steps(40,end) forwards, blink .75s step-end infinite;}
-@keyframes typing{from{width:0;}to{width:100%;}}
-@keyframes blink{from,to{border-color:transparent;}50%{border-color:var(--accent);}}
-.btn{display:inline-block;margin-top:40px;padding:12px 30px;border:2px solid var(--accent);color:var(--accent);border-radius:5px;font-weight:600;transition:all 0.3s;}
-.btn:hover{background:var(--accent);color:var(--bg);box-shadow:0 0 20px var(--accent-glow);transform:scale(1.05);}
-.btn.bounce{animation:bounce 2s infinite;}
-@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.logo {
+  font-family: 'Fira Code', monospace;
+  font-size: clamp(1rem, 4vw, 1.5rem);
+  font-weight: bold;
+  background: linear-gradient(135deg, var(--accent), var(--pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  font-size: 0.9rem;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--pink));
+  transition: width 0.3s;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+@media(max-width: 768px) {
+  .nav-links { display: none; }
+}
+
+/* HERO SECTION */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 5% 60px;
+  margin-top: 60px;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 8vw, 60px);
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1200px;
+}
+
+/* HERO PHOTO */
+.hero-photo {
+  position: relative;
+  width: clamp(130px, 40vw, 240px);
+  height: clamp(130px, 40vw, 240px);
+  flex-shrink: 0;
+}
+
+.photo-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.photo-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: float-photo 6s ease-in-out infinite;
+}
+
+@keyframes float-photo {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+.photo-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 110%;
+  height: 110%;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: spin 8s linear infinite;
+}
+
+.photo-ring-2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 130%;
+  height: 130%;
+  border: 1px solid var(--pink);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: spin-reverse 12s linear infinite;
+  opacity: 0.6;
+}
+
+.photo-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: inset 0 0 30px rgba(0,217,255,0.3), 0 0 50px var(--accent-glow);
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes spin-reverse {
+  from { transform: translate(-50%, -50%) rotate(360deg); }
+  to { transform: translate(-50%, -50%) rotate(0deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: inset 0 0 30px rgba(0,217,255,0.3), 0 0 50px var(--accent-glow); }
+  50% { box-shadow: inset 0 0 30px rgba(0,217,255,0.5), 0 0 80px var(--accent-glow); }
+}
+
+/* HERO TEXT */
+.hero-text {
+  flex: 1;
+  min-width: 250px;
+  max-width: 600px;
+}
+
+.hero p {
+  color: var(--accent);
+  font-family: 'Fira Code';
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  margin-bottom: 10px;
+  animation: slide-left 0.8s ease-out;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 8vw, 5rem);
+  margin-bottom: 15px;
+  background: linear-gradient(135deg, var(--accent), var(--pink), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: slide-down 0.8s ease-out 0.1s both;
+  line-height: 1.1;
+}
+
+.hero h2 {
+  color: var(--text-secondary);
+  font-size: clamp(1rem, 4vw, 2rem);
+  margin-bottom: 20px;
+  animation: slide-down 0.8s ease-out 0.2s both;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+.typewriter {
+  font-family: 'Fira Code', monospace;
+  color: var(--accent);
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  margin-bottom: 30px;
+  border-right: 2px solid var(--accent);
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 3.5s steps(50) forwards, blink 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  0%, 50%, 100% { border-color: var(--accent); }
+}
+
+@keyframes slide-left {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.btn-group {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn {
+  padding: 12px 30px;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--accent);
+  z-index: -1;
+  transition: left 0.3s;
+}
+
+.btn:hover {
+  color: var(--bg);
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px var(--accent-glow);
+}
+
+.btn:hover::before {
+  left: 0;
+}
+
+.btn.pulse {
+  animation: pulse-btn 2s ease-in-out infinite;
+}
+
+@keyframes pulse-btn {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
 
 /* SECTIONS */
-section{padding:100px 10%;opacity:0;transform:translateY(50px);transition:1s;}
-section h2{font-size:2.5rem;margin-bottom:50px;position:relative;display:inline-block;}
-section h2::after{content:'';position:absolute;left:0;bottom:-10px;width:60px;height:4px;background:var(--accent);border-radius:2px;}
+section {
+  position: relative;
+  z-index: 10;
+  padding: clamp(60px, 10vw, 120px) 5%;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease-out;
+}
 
-/* CARDS */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px;}
-.card{background:var(--card-bg);border:1px solid var(--glass-border);padding:30px;border-radius:15px;backdrop-filter:blur(5px);transition:transform 0.3s,border-color 0.3s;}
-.card:hover{transform:translateY(-10px) rotateX(5deg) rotateY(5deg);border-color:var(--accent);box-shadow:0 10px 25px rgba(0,0,0,0.3);}
-.card h3{margin-bottom:15px;font-size:1.5rem;}
-.card p{color:var(--text-secondary);font-size:0.95rem;margin-bottom:20px;}
-.tags span{display:inline-block;font-family:'Fira Code',monospace;font-size:0.75rem;background:rgba(56,189,248,0.1);color:var(--accent);padding:5px 10px;border-radius:20px;margin-right:5px;margin-bottom:5px;}
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-/* SKILLS ANIMATION */
-.skill-bar{background:rgba(255,255,255,0.1);border-radius:20px;height:15px;margin-bottom:15px;overflow:hidden;}
-.skill-fill{height:100%;width:0%;background:var(--accent);border-radius:20px;transition:width 1.5s ease-in-out;}
+section h2 {
+  font-size: clamp(1.8rem, 6vw, 3rem);
+  margin-bottom: 50px;
+  background: linear-gradient(135deg, var(--accent), var(--pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 15px;
+}
+
+section h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: clamp(40px, 10vw, 80px);
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--pink));
+  border-radius: 2px;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(clamp(280px, 100%, 350px), 1fr));
+  gap: clamp(20px, 4vw, 40px);
+  margin-bottom: 60px;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  padding: clamp(20px, 4vw, 35px);
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+  transition: all 0.4s;
+  position: relative;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0,217,255,0.1), rgba(217,70,239,0.1));
+  opacity: 0;
+  transition: opacity 0.4s;
+  z-index: -1;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  border-color: var(--accent);
+  box-shadow: 0 20px 50px rgba(0,217,255,0.2);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card h3 {
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  margin-bottom: 15px;
+  background: linear-gradient(135deg, var(--accent), var(--pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.card p {
+  color: var(--text-secondary);
+  font-size: clamp(0.85rem, 2vw, 0.95rem);
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.tags span {
+  font-family: 'Fira Code', monospace;
+  font-size: clamp(0.65rem, 1.5vw, 0.75rem);
+  background: rgba(0,217,255,0.15);
+  color: var(--accent);
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(0,217,255,0.3);
+  transition: all 0.3s;
+}
+
+.tags span:hover {
+  background: rgba(0,217,255,0.3);
+  transform: translateY(-2px);
+}
+
+/* BUTTONS */
+.project-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+  z-index: 11;
+  position: relative;
+}
+
+.btn-small {
+  padding: 8px 16px;
+  border: 1.5px solid var(--accent);
+  color: var(--accent);
+  border-radius: 6px;
+  font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+  font-weight: 600;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 11;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-small::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--accent);
+  z-index: -1;
+  transition: left 0.3s;
+}
+
+.btn-small:hover {
+  color: var(--bg);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,217,255,0.3);
+}
+
+.btn-small:hover::before {
+  left: 0;
+}
+
+.btn-demo {
+  border-color: #10b981;
+  color: #10b981;
+}
+
+.btn-demo::before {
+  background: #10b981;
+}
+
+/* SKILL BAR */
+.skill-bar {
+  background: rgba(255,255,255,0.08);
+  border-radius: 20px;
+  height: 10px;
+  margin: 15px 0;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+}
+
+.skill-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--pink));
+  border-radius: 20px;
+  transition: width 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 0 15px var(--accent-glow);
+}
 
 /* TIMELINE */
-.timeline-item{border-left:2px solid var(--accent);padding-left:30px;margin-bottom:40px;position:relative;}
-.timeline-item::before{content:'';position:absolute;left:-9px;top:0;width:16px;height:16px;background:var(--bg);border:2px solid var(--accent);border-radius:50%;}
-.timeline-date{font-family:'Fira Code',monospace;color:var(--accent);font-size:0.9rem;margin-bottom:5px;display:block;}
+.timeline-item {
+  border-left: 2px solid var(--accent);
+  padding-left: 25px;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  background: var(--bg);
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.timeline-date {
+  color: var(--accent);
+  font-family: 'Fira Code';
+  font-size: 0.85rem;
+  margin-bottom: 5px;
+}
+
+.timeline-item h4 {
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  margin-bottom: 5px;
+}
 
 /* FOOTER */
-.footer{text-align:center;padding:50px;border-top:1px solid var(--glass-border);color:var(--text-secondary);}
+.footer {
+  text-align: center;
+  padding: 40px 5%;
+  border-top: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  position: relative;
+  z-index: 10;
+}
 
-/* MOBILE */
-@media(max-width:768px){.hero h1{font-size:2.5rem;}.nav-links{display:none;}.hero-content{flex-direction:column;}}
+/* RESPONSIVE */
+@media(max-width: 768px) {
+  .hero {
+    padding: 100px 5% 50px;
+  }
+  
+  .hero-content {
+    flex-direction: column;
+  }
+  
+  .project-buttons {
+    flex-direction: column;
+  }
+  
+  .btn-small {
+    width: 100%;
+    text-align: center;
+  }
+}
 </style>
 </head>
 <body>
 
+<!-- BACKGROUND -->
 <div class="bg-orb orb-1"></div>
 <div class="bg-orb orb-2"></div>
 
+<!-- NAVIGATION -->
 <nav>
   <div class="logo">PrinceSah.dev</div>
   <div class="nav-links">
@@ -111,131 +635,212 @@ section h2::after{content:'';position:absolute;left:0;bottom:-10px;width:60px;he
 <!-- HERO -->
 <section class="hero">
   <div class="hero-content">
-    <!-- Photo -->
+    <!-- PHOTO -->
     <div class="hero-photo">
-      <img src="pp.jfif" alt="Prince Sah" />
+      <div class="photo-ring"></div>
+      <div class="photo-ring-2"></div>
+      <div class="photo-wrapper">
+        <img src="new.png" alt="Prince Sah" />
+        <div class="photo-glow"></div>
+      </div>
     </div>
-    <!-- Text -->
-    <div>
+    
+    <!-- TEXT -->
+    <div class="hero-text">
       <p>Hi, my name is</p>
-      <h1 id="hero-title">Prince Sah.</h1>
-      <h2 id="hero-subtitle">I BUILD THINGS WITH PASSION & PATIENCE.</h2>
-      <div class="typewriter">B.Tech CSE Student | Aspiring Web & AI Developer</div>
-      <a href="#projects" class="btn bounce">View My Work</a>
+      <h1>Prince Sah.</h1>
+      <h2>I BUILD THINGS WITH PASSION & PATIENCE.</h2>
+      <div class="typewriter">B.Tech CSE Student | Web & AI Developer</div>
+      <div class="btn-group">
+        <a href="#projects" class="btn pulse">View My Work</a>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
-<h2>About Me</h2>
-<div class="grid">
-<div class="card">
-<h3>The Student</h3>
-<p>Currently pursuing <strong>B.Tech in Computer Science & Engineering</strong>. Passionate about coding, AI, and building useful applications and projects.</p>
-<div class="timeline-item">
-<span class="timeline-date">2025 - Present</span>
-<h4>B.Tech CSE</h4>
-<p>Focus: Programming, Web Development, AI, Data Structures</p>
-</div>
-<div class="timeline-item">
-<span class="timeline-date">2023</span>
-<h4>+2 Science</h4>
-<p>Completed in Nepal | GPA 3.6 | Focus on Science & Math</p>
-</div>
-</div>
-<div class="card">
-<h3>The Creator</h3>
-<p>I love creating projects, websites, and AI tools. I also explore UI/UX and creative coding projects.</p>
-<div class="tags">
-<span>Web Dev</span><span>AI</span><span>Python</span><span>React JS</span>
-</div>
-</div>
-</div>
+  <h2>About Me</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>The Student</h3>
+      <p>Currently pursuing <strong>B.Tech in Computer Science & Engineering</strong>. Passionate about coding, AI, and building useful applications.</p>
+      <div class="timeline-item">
+        <span class="timeline-date">2025 - Present</span>
+        <h4>B.Tech CSE</h4>
+        <p>Focus: Programming, Web Development, AI</p>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-date">2023</span>
+        <h4>+2 Science</h4>
+        <p>Completed in Nepal | GPA 3.6</p>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h3>The Creator</h3>
+      <p>I love creating projects, websites, and AI tools. I explore UI/UX and creative coding.</p>
+      <div class="tags">
+        <span>Web Dev</span>
+        <span>AI</span>
+        <span>Python</span>
+        <span>React JS</span>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- SKILLS -->
 <section id="skills">
-<h2>Skills</h2>
-<div class="grid">
-<div class="card"><h3>Programming</h3>
-<div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
-<p>Python, Javascript, C</p>
-</div>
-<div class="card"><h3>Web Dev</h3>
-<div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
-<p>HTML, CSS, JS, Django</p>
-</div>
-<div class="card"><h3>AI & ML</h3>
-<div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
-<p>Basics of AI, ML, ChatGPT & Tools</p>
-</div>
-<div class="card"><h3>Tools</h3>
-<div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
-<p>Git, GitHub, VS Code, </p>
-</div>
-</div>
+  <h2>Skills</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Programming</h3>
+      <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+      <p>Python, Javascript, C</p>
+    </div>
+    
+    <div class="card">
+      <h3>Web Dev</h3>
+      <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+      <p>HTML, CSS, JS, Django</p>
+    </div>
+    
+    <div class="card">
+      <h3>AI & ML</h3>
+      <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
+      <p>Basics of AI, ML, ChatGPT</p>
+    </div>
+    
+    <div class="card">
+      <h3>Tools</h3>
+      <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+      <p>Git, GitHub, VS Code</p>
+    </div>
+  </div>
 </section>
 
 <!-- PROJECTS -->
 <section id="projects">
-<h2>Projects</h2>
-<div class="grid">
-<div class="card">
-<h3>Personal AI Assistant</h3>
-<p>Python AI assistant project called JARVIS to automate tasks and provide info via commands.</p>
-<div class="tags"><span>Python</span><span>AI</span><span>Automation</span></div>
-</div>
-<div class="card">
-<h3>Portfolio Website</h3>
-<p>This live portfolio website showcasing my projects, skills, and info online.</p>
-<div class="tags"><span>HTML</span><span>CSS</span><span>JS</span></div>
-</div>
-<div class="card">
-<h3> Mini Projects</h3>
-<p>To do lists , calculator, tic tac toe game.</p>
-<div class="tags"><span>React JS</span><span>Frontend and Python></div>
-</div>
-</div>
+  <h2>Projects</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>QR Code Generator</h3>
+      <p>A simple and efficient QR code generator tool. Convert any text or URL into a scannable QR code instantly with a clean, modern interface.</p>
+      <div class="tags">
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JavaScript</span>
+        <span>QR Tech</span>
+      </div>
+      <div class="project-buttons">
+        <a href="https://prince-sah-codes.github.io/QRCODE-GENERATOR/" target="_blank" class="btn-small btn-demo">🔗 Live Demo</a>
+        <a href="https://github.com/prince-sah-codes/QRCODE-GENERATOR" target="_blank" class="btn-small">📂 GitHub</a>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h3>Princess AI Assistant</h3>
+      <p>My personal AI-powered assistant built on Google AI Studio. An intelligent conversational AI that helps with tasks and provides assistance.</p>
+      <div class="tags">
+        <span>AI</span>
+        <span>Google AI</span>
+        <span>Chatbot</span>
+        <span>Automation</span>
+      </div>
+      <div class="project-buttons">
+        <a href="https://aistudio.google.com/apps/3193a68f-8c2f-4c3d-be9f-30a20d4f5a66?fullscreenApplet=true&showPreview=true&showAssistant=true" target="_blank" class="btn-small btn-demo">🔗 Live Demo</a>
+        <a href="https://github.com/prince-sah-codes" target="_blank" class="btn-small">👤 Profile</a>
+      </div>
+    </div>
+    
+
+    
+    <div class="card">
+      <h3>Portfolio Website</h3>
+      <p>This live portfolio website showcasing my projects, skills, and info with ultra-modern animations.</p>
+      <div class="tags">
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JS</span>
+        <span>3D</span>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h3>Mini Projects</h3>
+      <p>To do lists, calculator, tic tac toe game and more mini projects.</p>
+      <div class="tags">
+        <span>React JS</span>
+        <span>Frontend</span>
+        <span>Python</span>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" style="text-align:center; max-width:600px; margin:0 auto;">
-<h2>BE IN TOUCH</h2>
-<p style="margin-bottom:30px; color:var(--text-secondary);">Reach out via email, phone, or check my GitHub for projects.</p>
-<a href="mailto:sahprince4554@email.com" class="btn">Email</a>
-<a href="tel:+91 9234406164" class="btn">Call</a>
-<a href="https://github.com/prince-sah-codes" target="_blank" class="btn">GitHub</a>
-<a href="https://www.linkedin.com/in/prince-sah-592b86386" target="_blank" class="btn">LinkedIn</a>
+<section id="contact">
+  <h2 style="margin-bottom: 30px;">BE IN TOUCH</h2>
+  <p style="color: var(--text-secondary); margin-bottom: 30px; font-size: clamp(0.95rem, 2vw, 1.1rem);">Reach out via email, phone, or check my GitHub for projects.</p>
+  <div class="btn-group">
+    <a href="mailto:sahprince4554@email.com" class="btn">Email</a>
+    <a href="tel:+919234406164" class="btn">Call</a>
+    <a href="https://github.com/prince-sah-codes" target="_blank" class="btn">GitHub</a>
+    <a href="https://www.linkedin.com/in/prince-sah-592b86386" target="_blank" class="btn">LinkedIn</a>
+  </div>
 </section>
 
 <!-- FOOTER -->
 <footer class="footer">
-<p>Designed & Built by Prince Sah</p>
+  <p>✨ Designed & Built by Prince Sah | 2025</p>
 </footer>
 
 <script>
-// Scroll Reveal
-const sections = document.querySelectorAll('section, .hero h1, .hero h2');
-const observer = new IntersectionObserver((entries, obs)=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.style.opacity='1';
-      entry.target.style.transform='translateY(0)';
-      obs.unobserve(entry.target);
+// SCROLL REVEAL
+const sections = document.querySelectorAll('section');
+const revealSection = (entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
     }
   });
-},{threshold:0.1});
-sections.forEach(section=>observer.observe(section));
+};
 
-// Hero Tilt
-const hero = document.querySelector('.hero-content');
-document.addEventListener('mousemove',e=>{
-  const x = (window.innerWidth/2 - e.clientX)/30;
-  const y = (window.innerHeight/2 - e.clientY)/30;
-  hero.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+const observer = new IntersectionObserver(revealSection, {
+  threshold: 0.1,
+  rootMargin: '0px 0px -100px 0px'
 });
-document.addEventListener('mouseleave',()=>{hero.style.transform='rotateY(0) rotateX(0)';});
+
+sections.forEach(section => observer.observe(section));
+
+// SKILL BARS ANIMATION
+const skillBars = document.querySelectorAll('.skill-fill');
+const skillObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const width = entry.target.style.width;
+      entry.target.style.width = '0%';
+      setTimeout(() => {
+        entry.target.style.width = width;
+      }, 50);
+      skillObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+skillBars.forEach(bar => skillObserver.observe(bar));
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(anchor.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
 </script>
 
 </body>
