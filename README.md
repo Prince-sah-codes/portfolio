@@ -45,7 +45,7 @@ Hi there! 👋 I'm **Prince Sah**, a passionate **B.Tech CSE student** from Nepa
 ---
 
 ## 🔗 Live Demo
-Check out the live portfolio here: [Prince Sah Portfolio](https://prince-sah-codes.github.io/portfolio)
+Check out the live portfolio here: [Prince Sah Portfolio](https://prince-sah-portfolio.vercel.app/)
 
 ---
 
